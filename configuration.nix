@@ -4,11 +4,20 @@
 
 { config, lib, pkgs, ... }:
 
+  let
+    home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
+  in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      (import "${home-manager}/nixos")
     ];
+
+  home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
+  home-manager.backupFileExtension = "backup";
+  home-manager.users.kevin = import ./home.nix;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -48,6 +57,12 @@
       xset r rate 400 35 &
     '';
   };  
+  
+  services.picom = {
+    enable = true;
+    backend = "glx";
+    fade = true;
+  };
   
 
   # Configure keymap in X11
@@ -90,12 +105,18 @@
     btop
     xwallpaper
     git
+    pfetch
+    pcmanfm
+    rofi
   ];
-
 
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 ="1";
   };
+
+  fonts.packages = with pkgs; [
+    jetbrains-mono
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
