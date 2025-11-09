@@ -58,6 +58,12 @@
     '';
   };  
   
+  services.picom = {
+    enable = true;
+    backend = "glx";
+    fade = true;
+  };
+  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -99,12 +105,18 @@
     btop
     xwallpaper
     git
+    pfetch
+    pcmanfm
+    rofi
   ];
-
 
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 ="1";
   };
+
+  fonts.packages = with pkgs; [
+    jetbrains-mono
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -23,9 +23,10 @@
     settings = {
       theme = "Flatland";
       font-family = "JetBrainsMonoNL Nerd Font Mono";
+      background-opacity = 0.9;
       keybind = [
-        "ctrl+c=copy_to_clipboard"
-        "ctrl+v=paste_from_clipboard"
+        "performable:ctrl+c=copy_to_clipboard"
+        "performable:ctrl+v=paste_from_clipboard"
       ];
       window-decoration = false;
       window-padding-balance = true;
@@ -37,4 +38,6 @@
   home.packages = with pkgs; [
     bat
   ];
+
+  home.file.".config/qtile".source = "/home/kevin/home-manager-dotfiles/qtile";
 }
