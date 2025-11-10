@@ -89,6 +89,8 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
+      gcc
+      zathura
     ];
   };
 
@@ -108,6 +110,8 @@
     pfetch
     pcmanfm
     rofi
+    ripgrep
+    unzip
   ];
 
   environment.sessionVariables = {
@@ -115,7 +119,7 @@
   };
 
   fonts.packages = with pkgs; [
-    jetbrains-mono
+    nerd-fonts.jetbrains-mono
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

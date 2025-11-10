@@ -22,7 +22,7 @@
     enable = true;
     settings = {
       theme = "Flatland";
-      font-family = "JetBrainsMonoNL Nerd Font Mono";
+      font-family = "JetBrainsMono";
       background-opacity = 0.9;
       keybind = [
         "performable:ctrl+c=copy_to_clipboard"
