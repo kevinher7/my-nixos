@@ -10,6 +10,7 @@
     shellAliases = {
       btw = "echo i use nixos btw";
       nrs = "sudo nixos-rebuild switch";
+      za = "zathura --fork";
     };
 
     initExtra = ''
