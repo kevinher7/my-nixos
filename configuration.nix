@@ -89,8 +89,6 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
-      gcc
-      zathura
     ];
   };
 
@@ -105,12 +103,9 @@
     pavucontrol
     btop
     xwallpaper
-    git
     pfetch
     pcmanfm
     rofi
-    ripgrep
-    unzip
   ];
 
   environment.sessionVariables = {
