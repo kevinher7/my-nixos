@@ -33,7 +33,9 @@
       window-padding-balance = true;
       window-padding-y = 0;
       window-padding-x = 0;
+      confirm-close-surface = false;
     };
+
   };
   
   home.packages = with pkgs; [
