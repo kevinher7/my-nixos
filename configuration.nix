@@ -53,7 +53,7 @@
     windowManager.qtile.enable = true;
     xkb.layout = "jp";
     displayManager.sessionCommands = ''
-      xwallpaper --zoom ~/walls/bunny.png
+      xwallpaper --zoom ~/walls/girl-reading-book.png
       xset r rate 400 35 &
     '';
   };  
@@ -95,7 +95,6 @@
   };
 
   programs.firefox.enable = true;
-
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
