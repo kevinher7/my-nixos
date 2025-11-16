@@ -29,7 +29,6 @@ in
     # Bare Minimum
     vim
     wget
-    neovim
     ghostty
     pavucontrol
     btop
@@ -57,6 +56,9 @@ in
   ];
 
   programs = {
+    # Enable Home Manager to manage the Home Directory
+    home-manager.enable = true;
+
     git = {
       enable = true;
       userName = "Kevin Hernandez";
@@ -65,13 +67,6 @@ in
       extraConfig = {
         init.defaultBranch = "main";
       };
-    };
-
-    nixvim = {
-      enable = true;
-      defaultEditor = true;
-
-      luaLoader.enable = true;
     };
 
     bash = {
@@ -105,6 +100,15 @@ in
         confirm-close-surface = false;
       };
     };
+
+    nixvim = {
+      enable = true;
+      defaultEditor = true;
+
+      luaLoader.enable = true;
+    };
+
+
   };
 
   home.file.".config/qtile".source = "/home/kevin/home-manager-dotfiles/qtile";
