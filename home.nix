@@ -1,6 +1,6 @@
-{config, pkgs, ... }:
+{ config, pkgs, ... }:
 
-let 
+let
   nixvim = import (
     builtins.fetchGit {
       url = "https://github.com/nix-community/nixvim";
@@ -48,11 +48,12 @@ in
     curl
     gcc
 
-    # Neovim Related
+    # Nixvim
     ripgrep
+    alejandra
     nixpkgs-fmt
-    nixpkgs-review
     ruff
+    clang-tools
   ];
 
   programs = {
@@ -71,16 +72,18 @@ in
 
     bash = {
       enable = true;
-        shellAliases = {
-          btw = "echo i use nixos btw";
-          nrs = "sudo nixos-rebuild switch";
-          za = "zathura --fork";
-        };
+      shellAliases = {
+        btw = "echo i use nixos btw";
+        nrs = "sudo nixos-rebuild switch";
+        cdnc = "cd ~/nixos-config";
+        cdhm = "cd ~/home-manager-dotfiles";
+        za = "zathura --fork";
+      };
 
-        initExtra = ''
-          export PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'
-          export PS1='\[\e[38;5;93m\]\u\[\e[0m\] in \[\e[38;5;251m\]\w\[\e[0m\] [\[\e[38;5;196m\]${"$"}{PS1_CMD1}\[\e[0m\]] ${"$"} '
-        '';
+      initExtra = ''
+        export PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'
+        export PS1='\[\e[38;5;93m\]\u\[\e[0m\] in \[\e[38;5;251m\]\w\[\e[0m\] [\[\e[38;5;196m\]${"$"}{PS1_CMD1}\[\e[0m\]] ${"$"} '
+      '';
     };
 
     ghostty = {
