@@ -45,6 +45,7 @@ in
 
     # Developer Basics
     git
+    gh
     curl
     gcc
 
