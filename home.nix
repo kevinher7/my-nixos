@@ -78,6 +78,15 @@ in
         cdnc = "cd ~/nixos-config";
         cdhm = "cd ~/home-manager-dotfiles";
         za = "zathura --fork";
+
+        # Git Aliases
+        gc = "git checkout";
+        gcb = "git checkout -b";
+
+        gcm = "git commit -m";
+
+        gss = "git status -s";
+        gds = "git diff --stat";
       };
 
       initExtra = ''
