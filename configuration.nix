@@ -4,12 +4,13 @@
 
 { config, lib, pkgs, ... }:
 
-  let
-    home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
-  in
+let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
+in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       (import "${home-manager}/nixos")
     ];
@@ -26,7 +27,7 @@
   networking.hostName = "nixos-btw"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
@@ -56,14 +57,14 @@
       xwallpaper --zoom ~/walls/girl-reading-book.png
       xset r rate 400 35 &
     '';
-  };  
-  
+  };
+
   services.picom = {
     enable = true;
     backend = "glx";
     fade = true;
   };
-  
+
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -108,7 +109,7 @@
   ];
 
   environment.sessionVariables = {
-    MOZ_USE_XINPUT2 ="1";
+    MOZ_USE_XINPUT2 = "1";
   };
 
   fonts.packages = with pkgs; [
