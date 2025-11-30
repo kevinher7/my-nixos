@@ -94,6 +94,11 @@ in
   };
 
   programs.firefox.enable = true;
+  programs.xss-lock = {
+    enable = true;
+    lockerCommand = "xsecurelock";
+  };
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -106,6 +111,7 @@ in
     pfetch
     pcmanfm
     rofi
+    xsecurelock
   ];
 
   environment.sessionVariables = {

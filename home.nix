@@ -122,7 +122,6 @@ in
       luaLoader.enable = true;
     };
 
-
   };
 
   home.file.".config/qtile".source = "/home/kevin/home-manager-dotfiles/qtile";
