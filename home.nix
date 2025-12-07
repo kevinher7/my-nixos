@@ -122,7 +122,12 @@ in
       luaLoader.enable = true;
     };
 
+    qutebrowser = {
+      enable = true;
+    };
+
   };
 
   home.file.".config/qtile".source = "/home/kevin/home-manager-dotfiles/qtile";
+  home.file.".config/qutebrowser".source = "/home/kevin/home-manager-dotfiles/qutebrowser";
 }

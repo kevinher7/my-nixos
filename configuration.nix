@@ -93,7 +93,6 @@ in
     ];
   };
 
-  programs.firefox.enable = true;
   programs.xss-lock = {
     enable = true;
     lockerCommand = "xsecurelock";
