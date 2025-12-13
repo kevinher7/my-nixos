@@ -1,0 +1,58 @@
+{
+  programs.nixvim = {
+    plugins = {
+      conform-nvim = {
+        enable = true;
+
+        settings = {
+          format_on_save = {
+            lsp_fallback = "fallback";
+            timeout_ms = 500;
+          };
+
+          notify_on_error = true;
+
+          formatters_by_ft = {
+            python = [ "ruff_format" ];
+            c = [ "clang_format" ];
+            nix = [ "nixpkgs_fmt" ];
+          };
+        };
+      };
+
+      lsp = {
+        enable = true;
+        inlayHints = true;
+
+        keymaps = {
+          # silent = true;
+
+          diagnostic = {
+            "<leader>E" = "open_float";
+            "<leader>[" = "goto_prev";
+            "<leader>]" = "goto_next";
+          };
+
+          lspBuf = {
+            "gD" = "declaration";
+            "gd" = "definition";
+            "gr" = "references";
+            "gI" = "implementation";
+            "gy" = "type_definition";
+
+            "<leader>cr" = "rename";
+          };
+        };
+
+        servers = {
+          ruff = {
+            enable = true;
+            filetypes = [ "python" ];
+          };
+          clangd.enable = true; # C & C++
+          nixd.enable = true;
+        };
+      };
+    };
+  };
+}
