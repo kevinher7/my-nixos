@@ -1,20 +1,21 @@
 { config, pkgs, ... }:
 
 let
-  nixvim = import (
-    builtins.fetchGit {
-      url = "https://github.com/nix-community/nixvim";
-      rev = "695b0b80f8452bc584adf23eb58bdc9f599e35eb";
-      ref = "main";
-    }
-  );
+  dotfiles = "${config.home.homeDirectory}/nixos-config/config";
+  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+
+  # Standard .config/directory
+  configs = {
+    qtile = "qtile";
+    # nixvim = "nixvim";
+    qutebrowser = "qutebrowser";
+  };
 in
 {
   imports = [
-    nixvim.homeModules.nixvim
-    /home/kevin/home-manager-dotfiles/nixvim/keymappings.nix
-    /home/kevin/home-manager-dotfiles/nixvim/options.nix
-    /home/kevin/home-manager-dotfiles/nixvim/plugins
+    ./config/nixvim/keymappings.nix
+    ./config/nixvim/options.nix
+    ./config/nixvim/plugins
   ];
 
   home.stateVersion = "25.05";
@@ -25,6 +26,13 @@ in
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
+
+  xdg.configFile = builtins.mapAttrs
+    (name: subpath: {
+      source = create_symlink "${dotfiles}/${subpath}";
+      recursive = true;
+    })
+    configs;
 
   home.packages = with pkgs; [
     # Bare Minimum
@@ -120,6 +128,8 @@ in
       defaultEditor = true;
 
       luaLoader.enable = true;
+
+
     };
 
     qutebrowser = {
@@ -128,6 +138,6 @@ in
 
   };
 
-  home.file.".config/qtile".source = "/home/kevin/home-manager-dotfiles/qtile";
-  home.file.".config/qutebrowser".source = "/home/kevin/home-manager-dotfiles/qutebrowser";
+  #  home.file.".config/qtile".source = "./config/qtile";
+  #  home.file.".config/qutebrowser".source = "./config/qutebrowser";
 }
