@@ -5,6 +5,7 @@
     ./treesitter.nix
     ./gitsigns.nix
     ./indent-blankline.nix
+    ./typst-vim.nix
   ];
 
   programs.nixvim = {
