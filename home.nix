@@ -2,6 +2,7 @@
 
 let
   dotfiles = "${config.home.homeDirectory}/nixos-config/config";
+  # dotfiles = "${pkgs.lib.getEnv "HOME"}/nixos-config/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
   # Standard .config/directory
@@ -27,12 +28,12 @@ in
     VISUAL = "nvim";
   };
 
-  xdg.configFile = builtins.mapAttrs
-    (name: subpath: {
-      source = create_symlink "${dotfiles}/${subpath}";
-      recursive = true;
-    })
-    configs;
+  # xdg.configFile = builtins.mapAttrs
+  # (name: subpath: {
+  #   source = create_symlink "${dotfiles}/${subpath}";
+  #   recursive = true;
+  # })
+  # configs;
 
   home.packages = with pkgs; [
     # Bare Minimum
@@ -138,6 +139,6 @@ in
 
   };
 
-  #  home.file.".config/qtile".source = "./config/qtile";
-  #  home.file.".config/qutebrowser".source = "./config/qutebrowser";
+  home.file.".config/qtile".source = "${config.home.homeDirectory}/nixos-config/config/qtile";
+  home.file.".config/qutebrowser".source = "${config.home.homeDirectory}/nixos-config/config/qutebrowser";
 }
