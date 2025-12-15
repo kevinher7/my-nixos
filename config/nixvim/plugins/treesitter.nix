@@ -11,10 +11,15 @@
           query
           yaml
 
-          # Python
           python
           c
+
+          typst
         ];
+
+        settings = {
+          highlight.enable = true;
+        };
       };
     };
   };
