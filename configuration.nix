@@ -49,6 +49,8 @@
     '';
   };
 
+  services.displayManager.ly.enable = true;
+
   services.picom = {
     enable = true;
     backend = "glx";
