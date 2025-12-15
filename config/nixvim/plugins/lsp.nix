@@ -39,6 +39,7 @@
             "gr" = "references";
             "gI" = "implementation";
             "gy" = "type_definition";
+            "ga" = "code_action";
 
             "<leader>cr" = "rename";
           };
