@@ -1,17 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  dotfiles = "${config.home.homeDirectory}/nixos-config/config";
-  # dotfiles = "${pkgs.lib.getEnv "HOME"}/nixos-config/config";
-  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-
-  # Standard .config/directory
-  configs = {
-    qtile = "qtile";
-    # nixvim = "nixvim";
-    qutebrowser = "qutebrowser";
-  };
-in
 {
   imports = [
     ./config/nixvim/keymappings.nix
@@ -27,13 +15,6 @@ in
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
-
-  # xdg.configFile = builtins.mapAttrs
-  # (name: subpath: {
-  #   source = create_symlink "${dotfiles}/${subpath}";
-  #   recursive = true;
-  # })
-  # configs;
 
   home.packages = with pkgs; [
     # Bare Minimum
@@ -129,8 +110,6 @@ in
       defaultEditor = true;
 
       luaLoader.enable = true;
-
-
     };
 
     qutebrowser = {
@@ -139,6 +118,11 @@ in
 
   };
 
-  home.file.".config/qtile".source = "${config.home.homeDirectory}/nixos-config/config/qtile";
-  home.file.".config/qutebrowser".source = "${config.home.homeDirectory}/nixos-config/config/qutebrowser";
+  xdg.configFile."qtile" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/home/kevin/nixos-config/config/qtile";
+    recursive = true;
+  };
+  xdg.configFile."qutebrowser/config.py" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/home/kevin/nixos-config/config/qutebrowser/config.py";
+  };
 }
