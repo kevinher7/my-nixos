@@ -66,7 +66,7 @@
       enable = true;
       shellAliases = {
         btw = "echo i use nixos btw";
-        nrs = "sudo nixos-rebuild switch";
+        nrs = "sudo nixos-rebuild switch --flake ~/config-nixos#beans-btw";
         cdnc = "cd ~/nixos-config";
         cdhm = "cd ~/home-manager-dotfiles";
         za = "zathura --fork";
