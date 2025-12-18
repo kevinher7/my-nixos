@@ -1867,9 +1867,6 @@ c.qt.workarounds.locale = False
 ## Type: Bool
 c.qt.workarounds.remove_service_workers = False
 
-# Trying to reduce start up time
-c.qt.workarounds.disable_accessibility = True
-
 ## When/how to show the scrollbar.
 ## Type: String
 ## Valid values:
