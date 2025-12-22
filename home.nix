@@ -33,6 +33,7 @@
     tree
     zathura
     unzip
+    bitwarden-cli
 
     # Developer Basics
     git
