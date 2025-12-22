@@ -6,6 +6,8 @@
     ./gitsigns.nix
     ./indent-blankline.nix
     ./typst-vim.nix
+    ./blink-cmp.nix
+    ./lualine.nix
   ];
 
   programs.nixvim = {

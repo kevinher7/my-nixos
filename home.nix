@@ -33,6 +33,7 @@
     tree
     zathura
     unzip
+    bitwarden-cli
 
     # Developer Basics
     git
@@ -66,7 +67,7 @@
       enable = true;
       shellAliases = {
         btw = "echo i use nixos btw";
-        nrs = "sudo nixos-rebuild switch --flake ~/config-nixos#beans-btw";
+        nrs = "sudo nixos-rebuild switch --flake ~/nixos-config#beans-btw";
         cdnc = "cd ~/nixos-config";
         cdhm = "cd ~/home-manager-dotfiles";
         za = "zathura --fork";

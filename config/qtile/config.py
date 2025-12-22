@@ -245,6 +245,10 @@ screens = [
                     background=colors[0],
                     format="{down} \u2193\u2191 {up}",
                 ),
+                widget.Volume(
+                    **widget_defaults,
+                    background=colors[0],
+                ),
                 widget.Clock(
                     **widget_defaults,
                     background=colors[2],
