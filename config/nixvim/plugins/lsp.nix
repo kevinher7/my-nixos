@@ -1,5 +1,9 @@
+{ pkgs, ... }:
 {
   programs.nixvim = {
+
+    extraPackages = [ pkgs.typstyle ];
+
     plugins = {
       conform-nvim = {
         enable = true;
@@ -52,6 +56,7 @@
           };
           clangd.enable = true; # C & C++
           nixd.enable = true;
+          tinymist.enable = true; # Typst
         };
       };
     };

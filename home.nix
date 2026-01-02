@@ -47,6 +47,7 @@
     nixpkgs-fmt
     ruff
     clang-tools
+    typstyle
   ];
 
   programs = {
