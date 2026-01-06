@@ -50,6 +50,15 @@
     typstyle
   ];
 
+  stylix = {
+    targets = {
+      qutebrowser.colors.enable = true;
+      rofi.colors.enable = true;
+      ghostty.colors.enable = true;
+      btop.colors.enable = true;
+    };
+  };
+
   programs = {
     # Enable Home Manager to manage the Home Directory
     home-manager.enable = true;
