@@ -127,6 +127,11 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  stylix = {
+    enable = true;
+    image = ./walls/girl-reading-book.png;
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
