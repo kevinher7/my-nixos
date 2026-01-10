@@ -31,7 +31,6 @@
 
     # User Basics
     tree
-    zathura
     unzip
     bitwarden-cli
 
@@ -51,11 +50,19 @@
   ];
 
   stylix = {
+    enable = true;
+
+    autoEnable = true;
+
+    image = ./walls/girl-reading-book.png;
+
+    polarity = "dark";
     targets = {
-      qutebrowser.colors.enable = true;
-      rofi.colors.enable = true;
-      ghostty.colors.enable = true;
-      btop.colors.enable = true;
+      qutebrowser.enable = true;
+      rofi.enable = true;
+      ghostty.enable = true;
+      btop.enable = true;
+      zathura.enable = true;
     };
   };
 
@@ -125,6 +132,13 @@
 
     qutebrowser = {
       enable = true;
+    };
+
+    zathura = {
+      enable = true;
+      options = {
+        selection-clipboard = "clipboard";
+      };
     };
 
   };
