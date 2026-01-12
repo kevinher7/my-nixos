@@ -154,6 +154,10 @@
   xdg.configFile."qutebrowser/config.py" = {
     source = config.lib.file.mkOutOfStoreSymlink "/home/kevin/nixos-config/config/qutebrowser/config.py";
   };
+  xdg.configFile."rquickshare" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/home/kevin/nixos-config/config/rquickshare";
+    recursive = true;
+  };
 
   services.dunst.enable = true;
 }
