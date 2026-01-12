@@ -47,6 +47,10 @@
     ruff
     clang-tools
     typstyle
+
+    # QuickShare
+    rquickshare
+    libayatana-appindicator
   ];
 
   stylix = {
@@ -150,4 +154,6 @@
   xdg.configFile."qutebrowser/config.py" = {
     source = config.lib.file.mkOutOfStoreSymlink "/home/kevin/nixos-config/config/qutebrowser/config.py";
   };
+
+  services.dunst.enable = true;
 }

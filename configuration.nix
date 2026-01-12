@@ -35,6 +35,10 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
+  hardware.bluetooth.enable = true;
+
+  services.blueman.enable = true;
+
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
   services.libinput.touchpad.naturalScrolling = true;
@@ -153,11 +157,27 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      userServices = true;
+    };
+  };
+
   # Open ports in the firewall.
+
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 9300 ];
+    allowedUDPPorts = [ 5353 ];
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
