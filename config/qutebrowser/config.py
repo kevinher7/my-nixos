@@ -1,7 +1,7 @@
 c = c  # noqa: F821
 config = config  # noqa: F821
 
-config.load_autoconfig(False)
+config.load_autoconfig(True)
 
 c.colors.statusbar.normal.bg = "#1e1e2e"
 c.colors.statusbar.normal.fg = "#cdd6f4"
@@ -9,6 +9,8 @@ c.colors.statusbar.normal.fg = "#cdd6f4"
 config.bind("<Ctrl-Tab>", "tab-focus last")  # if this differs from default
 
 c.auto_save.session = True
+
+c.downloads.location.directory = "~/downloads"
 
 # Dark Mode
 c.colors.webpage.darkmode.enabled = True
