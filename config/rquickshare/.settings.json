@@ -1,8 +1,13 @@
 {
   "device_name": "beans-btw",
+  "port": 9300,
   "server_port": 9300,
   "download_directory": "/home/kevin/downloads",
+  "light_mode": false,
   "show_notifications": true,
   "auto_start": false,
-  "light_mode": false
+  "autostart": false,
+  "startminimized": false,
+  "realclose": false,
+  "visibility": 2
 }
