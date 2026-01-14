@@ -1,5 +1,4 @@
-{ config, ... }:
-
+{ lib, ... }:
 {
   programs.qutebrowser = {
     loadAutoconfig = false;
@@ -13,13 +12,6 @@
       colors.webpage.darkmode.algorithm = "lightness-cielab";
       colors.webpage.darkmode.policy.images = "never";
 
-      # Styles and Cosmetics
-      tabs.padding = {
-        top = 3;
-        bottom = 3;
-        left = 9;
-        right = 9;
-      };
       tabs.indicator.width = 0;
       tabs.width = "7%";
       window.transparent = true;
@@ -31,6 +23,9 @@
       content.webrtc_ip_handling_policy = "default-public-interface-only";
       content.cookies.accept = "all";
       content.cookies.store = true;
+
+      # Style
+      fonts.default_size = lib.mkForce "10pt";
     };
 
     keyBindings = {
@@ -39,10 +34,17 @@
       };
     };
 
-    # # For settings that require patterns (config.set)
-    # extraConfig = ''
-    #   config.set("colors.webpage.darkmode.enabled", False, "file://*")
-    #   config.set("content.webgl", False, "*")
-    # '';
+    # For settings that cause dict parsing problems or require patterns (config.set)
+    extraConfig = ''
+      c.tabs.padding = {
+        "top": 3,
+        "bottom": 3,
+        "left": 9,
+        "right": 9
+      }
+
+      # config.set("colors.webpage.darkmode.enabled", False, "file://*")
+      # config.set("content.webgl", False, "*")
+    '';
   };
 }
