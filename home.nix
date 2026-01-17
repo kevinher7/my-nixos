@@ -5,6 +5,8 @@
     ./config/nixvim/keymappings.nix
     ./config/nixvim/options.nix
     ./config/nixvim/plugins
+
+    ./config/qutebrowser/options.nix
   ];
 
   home.stateVersion = "25.05";
@@ -31,7 +33,6 @@
 
     # User Basics
     tree
-    zathura
     unzip
     bitwarden-cli
 
@@ -47,7 +48,51 @@
     nixpkgs-fmt
     ruff
     clang-tools
+    typstyle
+
+    # QuickShare
+    rquickshare
+    libayatana-appindicator
   ];
+
+  stylix = {
+    enable = true;
+
+    autoEnable = true;
+
+    image = ./walls/girl-reading-book.png;
+
+    polarity = "dark";
+
+    fonts = {
+      monospace = {
+        package = pkgs.jetbrains-mono;
+        name = "JetBrains Mono";
+      };
+      sansSerif = {
+        package = pkgs.jetbrains-mono;
+        name = "JetBrains Mono";
+      };
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+
+      sizes = {
+        applications = 12;
+        desktop = 12;
+        popups = 10;
+      };
+    };
+
+    targets = {
+      rofi.enable = true;
+      ghostty.enable = true;
+      btop.enable = true;
+      zathura.enable = true;
+      qutebrowser.enable = true;
+    };
+  };
 
   programs = {
     # Enable Home Manager to manage the Home Directory
@@ -91,8 +136,7 @@
     ghostty = {
       enable = true;
       settings = {
-        theme = "Flatland";
-        font-family = "JetBrainsMono";
+        # font-family = "JetBrainsMono";
         background-opacity = 0.9;
         keybind = [
           "performable:ctrl+c=copy_to_clipboard"
@@ -117,13 +161,30 @@
       enable = true;
     };
 
+    zathura = {
+      enable = true;
+      options = {
+        selection-clipboard = "clipboard";
+      };
+    };
+
   };
 
   xdg.configFile."qtile" = {
     source = config.lib.file.mkOutOfStoreSymlink "/home/kevin/nixos-config/config/qtile";
     recursive = true;
   };
-  xdg.configFile."qutebrowser/config.py" = {
-    source = config.lib.file.mkOutOfStoreSymlink "/home/kevin/nixos-config/config/qutebrowser/config.py";
+
+  # xdg.configFile."rquickshare" = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "/home/kevin/nixos-config/config/rquickshare";
+  #   recursive = true;
+  # };
+
+  # Does not use ~/.config
+  home.file.".local/share/dev.mandre.rquickshare" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/home/kevin/nixos-config/config/rquickshare";
+    recursive = true;
   };
+
+  services.dunst.enable = true;
 }

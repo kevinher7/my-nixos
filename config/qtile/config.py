@@ -230,10 +230,9 @@ screens = [
                 # ),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
-                # widget.Systray(
-                #     **widget_defaults,
-                #     padding=5,
-                # ),
+                widget.Systray(
+                    **widget_defaults,
+                ),
                 widget.Battery(
                     **widget_defaults,
                     background=colors[0],
