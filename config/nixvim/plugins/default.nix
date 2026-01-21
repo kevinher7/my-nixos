@@ -8,6 +8,7 @@
     ./typst-vim.nix
     ./blink-cmp.nix
     ./lualine.nix
+    ./nvim-autopairs.nix
   ];
 
   programs.nixvim = {
@@ -23,7 +24,6 @@
       none-ls.enable = true;
 
       guess-indent.enable = true;
-      nvim-autopairs.enable = true;
       nvim-surround.enable = true;
     };
   };
