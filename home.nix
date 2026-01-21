@@ -175,15 +175,19 @@
     recursive = true;
   };
 
-  # xdg.configFile."rquickshare" = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "/home/kevin/nixos-config/config/rquickshare";
-  #   recursive = true;
-  # };
-
   # Does not use ~/.config
-  home.file.".local/share/dev.mandre.rquickshare" = {
-    source = config.lib.file.mkOutOfStoreSymlink "/home/kevin/nixos-config/config/rquickshare";
-    recursive = true;
+  home.file.".local/share/dev.mandre.rquickshare/.settings.json".text = builtins.toJSON {
+    device_name = "beans-btw";
+    port = 9300;
+    server_port = 9300;
+    download_directory = "/home/kevin/downloads";
+    light_mode = false;
+    show_notifications = true;
+    auto_start = false;
+    autostart = false;
+    startminimized = false;
+    realclose = false;
+    visibility = 2;
   };
 
   services.dunst.enable = true;
