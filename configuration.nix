@@ -48,7 +48,7 @@
     windowManager.qtile.enable = true;
     xkb.layout = "jp";
     displayManager.sessionCommands = ''
-      xwallpaper --zoom ~/walls/girl-reading-book.png
+      xwallpaper --zoom ~/assets/girl-reading-book.png
       xset r rate 400 35 &
     '';
   };
@@ -133,7 +133,7 @@
 
   stylix = {
     enable = true;
-    image = ./walls/girl-reading-book.png;
+    image = ./assets/girl-reading-book.png;
 
     polarity = "dark";
 
