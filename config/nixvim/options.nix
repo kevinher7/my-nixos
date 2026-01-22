@@ -1,5 +1,15 @@
 {
   programs.nixvim = {
+
+    colorschemes.catppuccin = {
+      enable = true;
+
+      settings.background = {
+        dark = "frappe";
+        light = "latte";
+      };
+    };
+
     clipboard = {
       providers = {
         xsel.enable = true;

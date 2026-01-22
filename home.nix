@@ -91,6 +91,7 @@
       btop.enable = true;
       zathura.enable = true;
       qutebrowser.enable = true;
+      nixvim.enable = false;
     };
   };
 
