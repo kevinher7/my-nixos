@@ -48,7 +48,7 @@
     windowManager.qtile.enable = true;
     xkb.layout = "jp";
     displayManager.sessionCommands = ''
-      xwallpaper --zoom ~/assets/girl-reading-book.png
+      xwallpaper --zoom ~/nixos-config/assets/girl-reading-book.png
       xset r rate 400 35 &
     '';
   };
