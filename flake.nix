@@ -1,5 +1,5 @@
 {
-  description = "NixOS from Scratch";
+  description = "Kevin's NixOS Flake";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-25.05";
@@ -20,23 +20,28 @@
   };
 
   outputs = { nixpkgs, home-manager, nixvim, ... }@inputs: {
-    nixosConfigurations.beans-btw = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        inputs.stylix.nixosModules.stylix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.kevin = import ./home.nix;
-            extraSpecialArgs = { inherit inputs; };
-            sharedModules = [ nixvim.homeModules.nixvim ];
-            backupFileExtension = "backup";
-          };
-        }
-      ];
+    nixosConfigurations = {
+      # Chromebook Configuration
+      chromebook = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/common
+          ./hosts/chromebook
+
+          inputs.stylix.nixosModules.stylix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.kevin = import ./home.nix;
+              extraSpecialArgs = { inherit inputs; };
+              sharedModules = [ nixvim.homeModules.nixvim ];
+              backupFileExtension = "backup";
+            };
+          }
+        ];
+      };
     };
   };
 }
