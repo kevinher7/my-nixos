@@ -103,7 +103,7 @@ keys = [
     Key([mod], "b", lazy.spawn("qutebrowser")),
     Key([mod, "shift"], "f", lazy.spawn("pcmanfm")),
     Key([mod], "d", lazy.spawn("rofi -show drun")),
-    Key([mod, "shift"], "l", lazy.spawn("xsecurelock")),
+    Key([mod, "control"], "l", lazy.spawn("xsecurelock")),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -240,6 +240,7 @@ screens = [
                 # widget.StatusNotifier(),
                 widget.Systray(
                     **widget_defaults,
+                    background=colors[2],
                 ),
                 widget.Battery(
                     **widget_defaults,
