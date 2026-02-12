@@ -237,11 +237,14 @@ screens = [
                 #     name_transform=lambda name: name.upper(),
                 # ),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(
+                widget.StatusNotifier(
                     **widget_defaults,
                     background=colors[2],
                 ),
+                # widget.Systray(
+                #     **widget_defaults,
+                #     background=colors[2],
+                # ),
                 widget.Battery(
                     **widget_defaults,
                     background=colors[0],
