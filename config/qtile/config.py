@@ -23,14 +23,22 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import subprocess
 
-from libqtile import bar, layout, qtile, widget
+from libqtile import hook, bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
 terminal = guess_terminal()
+
+
+@hook.subscribe.startup_once
+def autostart():
+    # Using subprocess.Popen so it doesn't block Qtile startup
+    subprocess.Popen(["fcitx5", "-d"])
+
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -95,7 +103,7 @@ keys = [
     Key([mod], "b", lazy.spawn("qutebrowser")),
     Key([mod, "shift"], "f", lazy.spawn("pcmanfm")),
     Key([mod], "d", lazy.spawn("rofi -show drun")),
-    Key([mod, "shift"], "l", lazy.spawn("xsecurelock")),
+    Key([mod, "control"], "l", lazy.spawn("xsecurelock")),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -229,10 +237,15 @@ screens = [
                 #     name_transform=lambda name: name.upper(),
                 # ),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(
+                widget.StatusNotifier(
                     **widget_defaults,
+                    icon_theme="Papirus-Dark",
+                    background=colors[2],
                 ),
+                # widget.Systray(
+                #     **widget_defaults,
+                #     background=colors[2],
+                # ),
                 widget.Battery(
                     **widget_defaults,
                     background=colors[0],
