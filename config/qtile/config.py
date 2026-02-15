@@ -239,7 +239,7 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 widget.StatusNotifier(
                     **widget_defaults,
-                    icon_theme="Papirus",
+                    icon_theme="Papirus-Dark",
                     background=colors[2],
                 ),
                 # widget.Systray(
