@@ -144,6 +144,8 @@
     lockerCommand = "xsecurelock";
   };
 
+  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -157,6 +159,7 @@
     pcmanfm
     rofi
     xsecurelock
+    papirus-icon-theme
   ];
 
   environment.sessionVariables = {
