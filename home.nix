@@ -35,6 +35,8 @@
     tree
     unzip
     bitwarden-cli
+    playerctl
+    xdotool
 
     # Developer Basics
     git
