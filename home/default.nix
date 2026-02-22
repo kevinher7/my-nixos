@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   imports = [
     ./stylix.nix
@@ -7,9 +7,12 @@
     ./programs
   ];
 
-  # TODO: Modularize the username?
-  home.username = "kevin";
-  home.homeDirectory = "/home/kevin";
-  home.stateVersion = "25.05";
   programs.home-manager.enable = true;
+
+  home = {
+    # TODO: Modularize the username?
+    username = "kevin";
+    homeDirectory = lib.mkForce "/home/kevin";
+    stateVersion = "25.05";
+  };
 }
