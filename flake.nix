@@ -1,5 +1,5 @@
 {
-  description = "NixOS from Scratch";
+  description = "Kevin's Nixos Configuration";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-25.05";
@@ -19,24 +19,37 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixvim, ... }@inputs: {
-    nixosConfigurations.beans-btw = nixpkgs.lib.nixosSystem {
+  outputs = { nixpkgs, home-manager, nixvim, stylix, ... }@inputs:
+    let
       system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        inputs.stylix.nixosModules.stylix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.kevin = import ./home.nix;
-            extraSpecialArgs = { inherit inputs; };
-            sharedModules = [ nixvim.homeModules.nixvim ];
-            backupFileExtension = "backup";
-          };
-        }
-      ];
+
+      # Helper Functions
+      mkNixosConfig = hostname: username:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/${hostname}
+
+            stylix.nixosModules.stylix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                backupFileExtension = "backup";
+                extraSpecialArgs = { inherit inputs; };
+                sharedModules = [ nixvim.homeModules.nixvim ];
+                users.${username} = import ./home;
+              };
+            }
+          ];
+        };
+    in
+    {
+      nixosConfigurations = {
+        beans-btw = mkNixosConfig "chromebook" "kevin";
+      };
     };
-  };
 }
