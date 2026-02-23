@@ -1,6 +1,8 @@
 { lib, ... }:
 {
   programs.qutebrowser = {
+    enable = true;
+
     loadAutoconfig = false;
 
     searchEngines = {

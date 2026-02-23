@@ -1,5 +1,25 @@
+{ pkgs, ... }:
 {
+  imports = [
+    ./plugins
+    ./keymappings.nix
+  ];
+
+  home.packages = with pkgs; [
+    # Nixvim
+    ripgrep
+    alejandra
+    nixpkgs-fmt
+    ruff
+    clang-tools
+    typstyle
+  ];
+
   programs.nixvim = {
+    enable = true;
+
+    defaultEditor = true;
+    luaLoader.enable = true;
 
     colorschemes.catppuccin = {
       enable = true;
