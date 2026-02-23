@@ -9,6 +9,8 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
+    git
+    gh
     ghostty
     pavucontrol
     btop
@@ -18,7 +20,7 @@
     rofi
     xsecurelock
     papirus-icon-theme
-  ];
+ ];
 
   environment.sessionVariables = {
     MOZ_USE_XINPUT2 = "1";
