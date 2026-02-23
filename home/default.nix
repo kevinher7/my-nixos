@@ -1,6 +1,9 @@
 { lib, ... }:
 {
   imports = [
+    ./git.nix
+    ./bash.nix
+    ./ghostty.nix
     ./stylix.nix
     ./nixvim
     ./qtile

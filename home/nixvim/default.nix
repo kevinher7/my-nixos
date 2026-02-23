@@ -1,4 +1,15 @@
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    # Nixvim
+    ripgrep
+    alejandra
+    nixpkgs-fmt
+    ruff
+    clang-tools
+    typstyle
+  ];
+
   programs.nixvim = {
     enable = true;
 
