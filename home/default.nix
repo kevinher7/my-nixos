@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     ./git.nix
@@ -17,5 +17,12 @@
     username = "kevin";
     homeDirectory = lib.mkForce "/home/kevin";
     stateVersion = "25.05";
+
+    packages = with pkgs; [
+      curl
+      unzip
+      bitwarden-cli
+      playerctl
+    ];
   };
 }
