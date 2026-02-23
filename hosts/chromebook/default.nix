@@ -3,9 +3,13 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/system.nix
+    ../../modules/packages.nix
+    ../../modules/networking.nix
+    ../../modules/programs.nix
+    ../../modules/stylix.nix
     ../../modules/display
     ../../modules/input
-    ../../modules/networking.nix
+    ../../modules/audio
   ];
 
   # Use the systemd-boot EFI boot loader.

@@ -4,5 +4,5 @@
   ];
 
   # Enable sound on startup
-  security.rkit.enable = true;
+  security.rtkit.enable = true;
 }

@@ -3,7 +3,7 @@
   stylix = {
     enable = true;
 
-    autoEnable = false; # Disable autoEnable to avoid conflicts with NixOS level
+    # autoEnable = false; # Disable autoEnable to avoid conflicts with NixOS level
 
     image = ../walls/girl-reading-book.png;
     polarity = "dark";
