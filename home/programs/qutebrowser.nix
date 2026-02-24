@@ -23,7 +23,7 @@
       colors = {
         webpage = {
           darkmode = {
-            e.enabled = true;
+            enabled = true;
             algorithm = "lightness-cielab";
             policy.images = "never";
           };
