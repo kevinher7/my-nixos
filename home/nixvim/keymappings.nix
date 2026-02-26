@@ -17,6 +17,11 @@
             desc = "Clean hlsearch";
           };
       }
+      {
+        mode = [ "n" "v" ];
+        key = "<leader>y";
+        action = "\"+y";
+      }
       # Telescope
       {
         action = ":Telescope live_grep<CR>";
