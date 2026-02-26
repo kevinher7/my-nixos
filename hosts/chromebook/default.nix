@@ -7,7 +7,8 @@
     ../../modules/networking.nix
     ../../modules/programs.nix
     ../../modules/stylix.nix
-    ../../modules/display
+    ../../modules/desktop/qtile
+    ../../modules/login
     ../../modules/input
     ../../modules/audio
   ];
