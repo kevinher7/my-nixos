@@ -20,4 +20,6 @@
   networking.hostName = "beans-btw";
 
   time.timeZone = "Asia/Tokyo";
+
+  services.logind.powerKey = "ignore";
 }
