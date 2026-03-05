@@ -22,6 +22,7 @@
   outputs = { nixpkgs, home-manager, nixvim, stylix, ... }@inputs:
     let
       system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
 
       # Helper Functions
       mkNixosConfig = hostname: username:
@@ -50,6 +51,14 @@
     {
       nixosConfigurations = {
         beans-btw = mkNixosConfig "chromebook" "kevin";
+      };
+
+      devShells.${system} = {
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            python3
+          ];
+        };
       };
     };
 }
