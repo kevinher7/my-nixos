@@ -19,7 +19,7 @@
     pfetch
     pcmanfm
     rofi
-    xsecurelock
+    i3lock-color
     papirus-icon-theme
     statix
   ];

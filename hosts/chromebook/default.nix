@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -21,5 +21,10 @@
 
   time.timeZone = "Asia/Tokyo";
 
-  services.logind.powerKey = "ignore";
+  services = {
+    logind.powerKey = "suspend";
+    xserver.displayManager.sessionCommands = ''
+      ${pkgs.xss-lock}/bin/xss-lock -- ${pkgs.i3lock-color}/bin/i3lock-color -c 000000 &
+    '';
+  };
 }
