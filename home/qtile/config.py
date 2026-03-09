@@ -152,13 +152,7 @@ keys = [
     Key([mod], "b", lazy.spawn("qutebrowser")),
     Key([mod, "shift"], "f", lazy.spawn("pcmanfm")),
     Key([mod], "d", lazy.spawn("rofi -show drun")),
-    Key(
-        [mod, "control"],
-        "l",
-        lazy.spawn(
-            "i3lock-color --color=2e3440 --clock --time-color=d8dee9 --date-color=d8dee9"
-        ),
-    ),
+    Key([mod, "control"], "l", lazy.spawn("betterlockscreen -l dimblur")),
     # Show Windows Control
     Key([], "XF86LaunchA", lazy.spawn("rofi -show window"), desc="Show all windows"),
     # Brightness Control
