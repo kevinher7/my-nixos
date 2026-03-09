@@ -21,6 +21,8 @@ _:
 
   time.timeZone = "Asia/Tokyo";
 
+  programs.i3lock.enable = true;
+
   services.logind.powerKey = "suspend";
-  security.pam.services.betterlockscreen.enable = true;
+  security.pam.services.i3lock-color.enable = true;
 }
