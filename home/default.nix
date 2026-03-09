@@ -9,6 +9,7 @@
     ./qtile
     ./programs
     ./rquickshare.nix
+    ./betterlockscreen.nix
   ];
 
   programs.home-manager.enable = true;
