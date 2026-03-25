@@ -1,4 +1,4 @@
-{ ... }:
+_:
 {
   imports = [
     ./hardware-configuration.nix
@@ -20,4 +20,9 @@
   networking.hostName = "beans-btw";
 
   time.timeZone = "Asia/Tokyo";
+
+  programs.i3lock.enable = true;
+
+  services.logind.powerKey = "suspend";
+  security.pam.services.i3lock-color.enable = true;
 }

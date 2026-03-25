@@ -19,7 +19,6 @@
     pfetch
     pcmanfm
     rofi
-    xsecurelock
     papirus-icon-theme
     statix
   ];
