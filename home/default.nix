@@ -1,4 +1,16 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, desktop, ... }:
+let
+  desktopSession =
+    if desktop == "qtile" then
+      [ ./desktop/qtile ]
+    else if desktop == "niri" then
+      [ ./desktops/niri ]
+    else
+      throw ''
+        home/default.nix: desktop must be either "qtile" or "niri",
+        got "${desktop}"
+      '';
+in
 {
   imports = [
     ./git.nix
@@ -10,7 +22,8 @@
     ./programs
     ./rquickshare.nix
     ./betterlockscreen.nix
-  ];
+  ]
+  ++ desktopSession;
 
   programs.home-manager.enable = true;
 
