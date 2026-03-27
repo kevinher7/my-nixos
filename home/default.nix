@@ -18,7 +18,6 @@ in
     ./ghostty.nix
     ./stylix.nix
     ./nixvim
-    ./qtile
     ./programs
     ./rquickshare.nix
     ./betterlockscreen.nix
