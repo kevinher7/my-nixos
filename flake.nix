@@ -24,10 +24,10 @@
       system = "x86_64-linux";
 
       # Helper Functions
-      mkNixosConfig = hostname: username:
+      mkNixosConfig = hostname: username: desktop:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs desktop; };
           modules = [
             ./hosts/${hostname}
 
@@ -39,7 +39,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 backupFileExtension = "backup";
-                extraSpecialArgs = { inherit inputs; };
+                extraSpecialArgs = { inherit inputs desktop; };
                 sharedModules = [ nixvim.homeModules.nixvim ];
                 users.${username} = import ./home;
               };
@@ -49,7 +49,7 @@
     in
     {
       nixosConfigurations = {
-        beans-btw = mkNixosConfig "chromebook" "kevin";
+        beans-btw = mkNixosConfig "chromebook" "kevin" "qtile";
       };
     };
 }
