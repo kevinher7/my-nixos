@@ -14,6 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Does not follow input.nixpkgs to prevent unexpected bugs
     nixvim = {
       url = "github:nix-community/nixvim?rev=695b0b80f8452bc584adf23eb58bdc9f599e35eb";
     };
@@ -24,10 +25,10 @@
       system = "x86_64-linux";
 
       # Helper Functions
-      mkNixosConfig = hostname: username: desktop:
+      mkNixosConfig = hostname: username:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs desktop; };
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/${hostname}
 
@@ -39,9 +40,9 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 backupFileExtension = "backup";
-                extraSpecialArgs = { inherit inputs desktop; };
+                extraSpecialArgs = { inherit inputs; };
                 sharedModules = [ nixvim.homeModules.nixvim ];
-                users.${username} = import ./home;
+                users.${username} = import ./home/hosts/${hostname}.nix;
               };
             }
           ];
@@ -49,7 +50,7 @@
     in
     {
       nixosConfigurations = {
-        beans-btw = mkNixosConfig "chromebook" "kevin" "qtile";
+        beans-btw = mkNixosConfig "chromebook" "kevin";
       };
     };
 }
