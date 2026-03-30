@@ -64,6 +64,10 @@
         "'" = "tab-focus 7";
         "(" = "tab-focus 8";
         ")" = "tab-focus 9";
+
+        # userscripts
+        ",pw" = "spawn --userscript qute-bitwarden";
+        ",pa" = "spawn --userscript qute-bitwarden --fill-all";
       };
     };
 
