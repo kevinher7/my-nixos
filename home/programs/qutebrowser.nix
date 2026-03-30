@@ -66,8 +66,8 @@
         ")" = "tab-focus 9";
 
         # userscripts
-        ",pw" = "spawn --userscript qute-bitwarden";
-        ",pa" = "spawn --userscript qute-bitwarden --fill-all";
+        ",pw" = "spawn --userscript qute-bitwarden --dmenu-command 'rofi -dmenu'";
+        ",pa" = "spawn --userscript qute-bitwarden --dmenu-command 'rofi -dmenu' --fill-all";
       };
     };
 
