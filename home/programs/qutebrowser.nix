@@ -1,4 +1,11 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
+let
+  # Fetch the official qute-bitwarden userscript from qutebrowser's repo
+  qute-bitwarden = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/qutebrowser/qutebrowser/main/misc/userscripts/qute-bitwarden";
+    sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Update with actual hash
+  };
+in
 {
   programs.qutebrowser = {
     enable = true;
@@ -65,9 +72,9 @@
         "(" = "tab-focus 8";
         ")" = "tab-focus 9";
 
-        # userscripts
-        ",pw" = "spawn --userscript qute-bitwarden --dmenu-command 'rofi -dmenu'";
-        ",pa" = "spawn --userscript qute-bitwarden --dmenu-command 'rofi -dmenu' --fill-all";
+        # Userscripts
+        ",p" = "spawn --userscript bitwarden";
+        ",P" = "spawn --userscript bitwarden --totp";
       };
     };
 
@@ -84,4 +91,18 @@
     '';
 
   };
+
+  # Place in userscripts in qutebrowser's userscripts directory
+  xdg.configFile."qutebrowser/userscripts/bitwarden" = {
+    source = qute-bitwarden;
+    executable = true; # Critical: userscripts must be executable
+  };
+
+  home.packages = with pkgs; [
+    bitwarden-cli
+    keyutils
+    python3
+    python3Packages.tldextract
+    python3Packages.pyperclip
+  ];
 }
