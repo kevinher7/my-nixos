@@ -51,6 +51,7 @@
     {
       nixosConfigurations = {
         beans-btw = mkNixosConfig "chromebook" "kevin";
+        uribo-btw = mkNixosConfig "server" "uribo";
       };
     };
 }
