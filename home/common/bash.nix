@@ -6,17 +6,13 @@
     shellAliases = lib.mkMerge [
       {
         # Common Aliasses
-
-        btw = "echo i use nixos btw";
         nrs = ''sudo nixos-rebuild switch --flake ~/nixos-config#${hostname}'';
         cdnc = "cd ~/nixos-config";
-
-        za = "zathura --fork";
       }
 
-      # Server aliases  
-      (lib.mkIf (hostname == "server") {
-        za = null;
+      # Chromebook aliases  
+      (lib.mkIf (hostname == "chromebook") {
+        za = "zathura --fork";
       })
     ];
 
