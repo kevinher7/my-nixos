@@ -4,11 +4,10 @@ let
 in
 {
   options.myModules.networking = {
-    enable = lib.mkEnableOption "custom networking configuration";
+    enable = lib.mkEnableOption "Networking Configuration";
 
     hostName = lib.mkOption {
       type = lib.types.str;
-      default = "nixos";
       description = "The hostname of the machine";
     };
 

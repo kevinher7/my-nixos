@@ -5,22 +5,18 @@
     ../../modules/system.nix
     ../../modules/docker.nix
     ../../modules/desktop/qtile
+    ../../modules/networking
     ../../modules/login
   ];
 
-  networking.hostName = "uribo-btw";
-  networking.networkmanager.enable = true;
-
-  services = {
+  myModules.networking = {
+    enable = true;
+    hostName = "uribo-btw";
     tailscale = {
       enable = true;
       openFirewall = true;
-      extraSetFlags = [
-        "--ssh"
-      ];
+      ssh = true;
     };
-
-    openssh.enable = true;
   };
 
   time.timeZone = "Asia/Tokyo";
