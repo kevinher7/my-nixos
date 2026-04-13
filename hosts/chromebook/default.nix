@@ -4,7 +4,6 @@
     ./hardware-configuration.nix
     ../../modules/system.nix
     ../../modules/packages.nix
-    ../../modules/programs.nix
     ../../modules/stylix.nix
     ../../modules/desktop/qtile
     ../../modules/networking
@@ -32,7 +31,11 @@
     };
   };
 
-  programs.i3lock.enable = true;
+  programs = {
+    i3lock.enable = true;
+    light.enable = true;
+  };
+
   security.pam.services.i3lock-color.enable = true;
 }
 
