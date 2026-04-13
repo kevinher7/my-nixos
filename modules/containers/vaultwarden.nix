@@ -8,7 +8,7 @@ in
       image = "vaultwarden/server:latest";
       autoStart = true;
       ports = [ "127.0.0.1:1821:80" ];
-      volumes = [ "/var/lib/vaulwarden:/data " ];
+      volumes = [ "/var/lib/vaultwarden:/data " ];
 
       extraOptions = [ "--network=homelab" ];
     };
