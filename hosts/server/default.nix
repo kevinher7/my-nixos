@@ -7,6 +7,7 @@
     ../../modules/stylix.nix
     ../../modules/docker.nix
     ../../modules/networking
+    ../../modules/containers
     ../../modules/login
     ../../modules/power
   ];
@@ -29,5 +30,15 @@
       profile = profile;
     };
   };
+
+  myHomelab = {
+    vaultwarden = {
+      enable = true;
+      domain = "https://vault.uribogoat.duckdns.org";
+    };
+
+    npm.enable = true;
+  };
+
 }
 
