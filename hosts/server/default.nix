@@ -10,6 +10,7 @@
     ../../modules/containers
     ../../modules/login
     ../../modules/power
+    ../../modules/services
   ];
 
   time.timeZone = "Asia/Tokyo";
@@ -32,12 +33,18 @@
   };
 
   myHomelab = {
+    npm.enable = true;
+
     vaultwarden = {
       enable = true;
       domain = "https://vault.uribogoat.duckdns.org";
     };
 
-    npm.enable = true;
+    pihole = {
+      enable = true;
+      webPort = 8080;
+      apiPasswordHash = ""; # Set via web UI first, then add hash here
+    };
   };
 
 }
