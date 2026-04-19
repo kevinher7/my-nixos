@@ -7,8 +7,8 @@ in
     enable = lib.mkEnableOption "Pi-hole DNS sinkhole and ad blocker";
 
     webPort = lib.mkOption {
-      type = lib.types.port;
-      default = 8080;
+      type = lib.types.str;
+      default = "8080";
       description = "Port for the Pi-hole web interface";
     };
 
