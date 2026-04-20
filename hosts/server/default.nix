@@ -42,7 +42,6 @@
     pihole = {
       enable = true;
       webPort = "8080";
-      apiPasswordHash = ""; # Set via web UI first, then add hash here
     };
   };
 

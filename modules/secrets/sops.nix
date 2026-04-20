@@ -9,8 +9,8 @@ _:
     secrets = {
       pihole_password = {
         neededForUsers = false;
-        owner = "root";
-        group = "root";
+        owner = "pihole";
+        group = "pihole";
         mode = "0400";
       };
     };

@@ -12,15 +12,6 @@ in
       description = "Port for the Pi-hole web interface";
     };
 
-    apiPasswordHash = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      description = ''
-        SHA-256 password hash for the web interface.
-        Leave empty to set password via web UI first, then extract hash from /etc/pihole/setupVars.conf
-      '';
-    };
-
     upstreamDNS = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" ];
@@ -85,6 +76,50 @@ in
   };
 
   config = lib.mkIf cfg.pihole.enable {
+    sops.templates."pihole.toml" = {
+      owner = "pihole";
+      group = "pihole";
+      mode = "0400";
+      content =
+        let
+          # Helper to format string arrays for TOML
+          fmtStrings = arr: lib.concatMapStringsSep ", " (x: ''"${x}"'') arr;
+        in
+        ''
+          [misc]
+          readOnly = false
+          dnsmasq_lines = ["address=/uribogoat.duckdns.org/192.168.0.33"]
+
+          [dns]
+          upstreams = [${fmtStrings cfg.pihole.upstreamDNS}]
+          hosts = [${fmtStrings cfg.pihole.localHosts}]
+          domainNeeded = true
+          bogusPriv = true
+
+          [webserver]
+          port = "${cfg.pihole.webPort}"
+        
+          [webserver.api]
+          pwhash = "${config.sops.placeholder.pihole_password}"
+        
+          [webserver.session]
+          timeout = ${toString cfg.pihole.sessionTimeout}
+
+          [ntp]
+          ipv4.active = false
+          ipv6.active = false
+          sync.active = false
+        '';
+    };
+
+    # Override the config file to use the sops template
+    environment.etc."pihole/pihole.toml" = lib.mkForce {
+      source = config.sops.templates."pihole.toml".path;
+      user = "pihole";
+      group = "pihole";
+      mode = "0400";
+    };
+
     services.pihole-ftl = {
       enable = true;
 
@@ -93,37 +128,8 @@ in
 
       lists = cfg.pihole.blocklists;
 
-      settings = {
-        misc = {
-          readOnly = false;
-          dnsmasq_lines = [
-            "address=/uribogoat.duckdns.org/192.168.0.33" # Host machine's local ip address
-          ];
-        };
-
-        dns = {
-          upstreams = cfg.pihole.upstreamDNS;
-          hosts = cfg.pihole.localHosts;
-          domainNeeded = true;
-          bogusPriv = true;
-        };
-
-        webserver = {
-          port = cfg.pihole.webPort;
-          api = {
-            pwhash = "${config.sops.secrets.pihole_password.path}";
-          };
-          session = {
-            timeout = cfg.pihole.sessionTimeout;
-          };
-        };
-
-        ntp = {
-          ipv4.active = false;
-          ipv6.active = false;
-          sync.active = false;
-        };
-      };
+      # Settings are provided via sops template
+      settings = { };
 
       queryLogDeleter = {
         enable = true;
@@ -134,6 +140,12 @@ in
     services.pihole-web = {
       enable = true;
       ports = [ cfg.pihole.webPort ];
+    };
+
+    # Ensure sops-nix runs before pihole-ftl
+    systemd.services.pihole-ftl = {
+      after = [ "sops-nix.service" ];
+      requires = [ "sops-nix.service" ];
     };
 
     # Disable conflicting services
