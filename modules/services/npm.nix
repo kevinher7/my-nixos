@@ -32,28 +32,11 @@ in
         "d /var/lib/npm/letsencrypt 0750 root root -"
       ];
 
-      services."podman-network-init" = {
-        enable = true;
-        after = [ "podman.socket" ];
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-          Type = "oneshot";
-          RemainAfterExit = true;
-
-          ExecStart = pkgs.writeShellScript "create-network" ''
-            ${pkgs.podman}/bin/podman network exists homelab || \
-            ${pkgs.podman}/bin/podman network create homelab
-          '';
-
-          ExecStop = pkgs.writeShellScript "remove-network" ''
-            ${pkgs.podman}/bin/podman network rm homelab || true
-          '';
-        };
-      };
-
       services."podman-npm" = {
-        after = [ "podman-network-init.service" ];
-        requires = [ "podman-network-init.service" ];
+        preStart = ''
+          ${pkgs.podman}/bin/podman network exists homelab || \
+          ${pkgs.podman}/bin/podman network create --disable-dns homelab
+        '';
       };
     };
   };
