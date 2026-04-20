@@ -111,7 +111,7 @@ in
         webserver = {
           port = cfg.pihole.webPort;
           api = {
-            pwhash = cfg.pihole.apiPasswordHash;
+            pwhash = builtins.readFile config.sops.secrets.pihole_password.path;
           };
           session = {
             timeout = cfg.pihole.sessionTimeout;

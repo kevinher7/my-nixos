@@ -5,6 +5,7 @@
     ../../modules/system.nix
     ../../modules/packages.nix
     ../../modules/stylix.nix
+    ../../modules/secrets/sops.nix
     ../../modules/networking
     ../../modules/login
     ../../modules/power
