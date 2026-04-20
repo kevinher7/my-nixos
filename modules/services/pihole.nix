@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  cfg = config.myHomelab.pihole;
+  cfg = config.myHomelab;
 in
 {
   options.myHomelab.pihole = {
@@ -84,32 +84,32 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf cfg.pihole.enable {
     services.pihole-ftl = {
       enable = true;
 
-      openFirewallDNS = cfg.openFirewallDNS;
-      openFirewallWebserver = cfg.openFirewallWeb;
+      openFirewallDNS = cfg.pihole.openFirewallDNS;
+      openFirewallWebserver = cfg.pihole.openFirewallWeb;
 
-      lists = cfg.blocklists;
+      lists = cfg.pihole.blocklists;
 
       settings = {
         misc.readOnly = false;
 
         dns = {
-          upstreams = cfg.upstreamDNS;
-          hosts = cfg.localHosts;
+          upstreams = cfg.pihole.upstreamDNS;
+          hosts = cfg.pihole.localHosts;
           domainNeeded = true;
           bogusPriv = true;
         };
 
         webserver = {
-          port = cfg.webPort;
+          port = cfg.pihole.webPort;
           api = {
-            pwhash = cfg.apiPasswordHash;
+            pwhash = cfg.pihole.apiPasswordHash;
           };
           session = {
-            timeout = cfg.sessionTimeout;
+            timeout = cfg.pihole.sessionTimeout;
           };
         };
 
@@ -122,7 +122,7 @@ in
 
       queryLogDeleter = {
         enable = true;
-        interval = cfg.queryLogRetention;
+        interval = cfg.pihole.queryLogRetention;
       };
     };
 

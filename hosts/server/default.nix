@@ -5,9 +5,7 @@
     ../../modules/system.nix
     ../../modules/packages.nix
     ../../modules/stylix.nix
-    ../../modules/docker.nix
     ../../modules/networking
-    ../../modules/containers
     ../../modules/login
     ../../modules/power
     ../../modules/services
@@ -35,11 +33,11 @@
   myHomelab = {
     npm.enable = true;
 
-    vaultwarden = {
-      enable = true;
-      domain = "https://vault.uribogoat.duckdns.org";
-    };
-
+    # vaultwarden = {
+    #   enable = true;
+    #   domain = "https://vault.uribogoat.duckdns.org";
+    # };
+    #
     pihole = {
       enable = true;
       webPort = "8080";
