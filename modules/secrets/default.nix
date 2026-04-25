@@ -1,0 +1,4 @@
+_:
+{
+  import = [ ./sops.nix ];
+}
