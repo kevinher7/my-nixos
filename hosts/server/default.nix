@@ -2,13 +2,13 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system.nix
-    ../../modules/packages.nix
-    ../../modules/stylix.nix
-    ../../modules/secrets/sops.nix
+    ../../modules/system
+    ../../modules/core
+    ../../modules/theming
     ../../modules/networking
     ../../modules/login
     ../../modules/power
+    ../../modules/secrets
     ../../modules/services
   ];
 
