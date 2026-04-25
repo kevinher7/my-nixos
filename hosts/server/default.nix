@@ -2,9 +2,9 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/stylix.nix
     ../../modules/system
     ../../modules/core
+    ../../modules/theming
     ../../modules/networking
     ../../modules/login
     ../../modules/power
