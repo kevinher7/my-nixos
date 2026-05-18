@@ -7,16 +7,12 @@
   cfg = config.myPrograms.zen-browser;
 in {
   imports = [
-    inputs.zen-browser.homeModules.twilight-official
+    inputs.zen-browser.homeModules.twilight
     ./policies.nix
     ./profile.nix
   ];
 
   config = lib.mkIf cfg.enable {
-    programs.zen-browser = {
-      enable = true;
-      darwinDefaultsId = "app.zen-browser.zen";
-      setAsDefaultBrowser = true;
-    };
+    programs.zen-browser.enable = true;
   };
 }

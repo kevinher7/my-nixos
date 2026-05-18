@@ -1,14 +1,17 @@
-# Extracted from ~/Library/Application Support/zen/Profiles/7otzd7ja.Default (release)/
-# User extensions (1Password, Multi-Account Containers), spaces, containers,
-# pins, bookmarks and search engines are preserved on disk; declare here as needed.
+# Use the existing on-disk profile directory to preserve user data
+# (bookmarks, extensions, sessions, spaces, containers, custom search engines).
+# The attr key becomes the profile Name in profiles.ini; `path` is the
+# subdirectory under Profiles/.
 {
   config,
   lib,
   ...
 }: {
   config = lib.mkIf config.myPrograms.zen-browser.enable {
-    programs.zen-browser.profiles.default = {
+    programs.zen-browser.profiles."Default (release)" = {
+      id = 0;
       isDefault = true;
+      path = "7otzd7ja.Default (release)";
 
       settings = {
         # Locale / region (Japan)
@@ -36,47 +39,20 @@
         "zen.swipe.is-fast-swipe" = false;
       };
 
-      # search.force = true is intentionally NOT set: the live profile keeps
-      # Google as appDefaultEngineId alongside built-in DDG/Bing/Wikipedia/
-      # Perplexity/Startpage. Forcing would wipe those on activation. Flip to
-      # true once every engine is enumerated below.
-      search = {
-        default = "google";
-        engines = {
-          "T3 Chat" = {
-            # User-added engine recreated from search.json.mozlz4. The live
-            # profile's iconMapObj is an inline data: URI, so no icon here —
-            # Zen falls back to a generic globe.
-            definedAliases = ["@t3"];
-            # urls = [{template = "https://t3.chat/?q={searchTerms}";}];
-          };
-        };
-      };
-
-      # Preserved on disk; declare later as needed.
+      # `search` deliberately NOT declared: doing so generates a fresh
+      # search.json.mozlz4 that would overwrite the on-disk file containing
+      # the user's T3 Chat engine plus state for built-ins (DDG, Bing,
+      # Wikipedia, Perplexity, Startpage). Migrate to declarative search
+      # later by enumerating every engine and setting force = true.
       #
-      # extensions.packages — prefer rycee NUR firefox-addons input. Existing
-      #   xpis under extensions/ stay in place for now:
-      #     {d634138d-c276-4fc8-924b-40a0ea21d284}  1Password (AMO: 1password-x-password-manager)
-      #     @testpilot-containers                   Multi-Account Containers (AMO: multi-account-containers)
-      #
-      # containers — Personal / Work / banking / shopping. Declaring requires
-      #   closing Zen before each home-manager switch.
-      #
-      # spaces — "Me" (🫩, container 1) and "work" (🐝, container 2), both with
-      #   gradient themes. Declaring requires closing Zen.
-      #
-      # pins — ~75 pinned tabs across the two spaces. Declaring requires
-      #   closing Zen.
-      #
-      # bookmarks — ~8 in places.sqlite. force = true would overwrite the
-      #   live DB; declare when curated.
-      #
-      # userChrome / userContent — none in profile (only auto-generated
-      #   zen-themes.css from Zen Mods). Nothing to migrate.
-      #
-      # keyboardShortcuts — custom set (version=18). Declaring requires
-      #   closing Zen on each switch.
+      # Other things preserved on disk; declare later as needed:
+      #   extensions (1Password, Multi-Account Containers),
+      #   containers (Personal, Work, banking, shopping),
+      #   spaces ("Me", "work" with gradient themes),
+      #   pins (~75 pinned tabs),
+      #   bookmarks (places.sqlite),
+      #   userChrome / userContent (none present),
+      #   keyboardShortcuts (version=18, custom set).
     };
   };
 }
